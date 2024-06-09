@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using StatlerWaldorfCorp.ES_CQRS_RealityConsumer.Location;
+using StatlerWaldorfCorp.ES_CQRS_RealityConsumer.Models;
 
 namespace StatlerWaldorfCorp.ES_CQRS_RealityConsumer.Controllers
 {
@@ -35,7 +36,8 @@ namespace StatlerWaldorfCorp.ES_CQRS_RealityConsumer.Controllers
         [HttpPut("teams/{teamId}/members/{memberId}")]
         public virtual IActionResult UpdateTeamMemberLocation(Guid teamId, Guid memberId, [FromBody] MemberLocation memberLocation)
         {
-            return this.Ok(locationCache.PutMemberLocation(teamId, memberId));
+            locationCache.PutMemberLocation(teamId, memberLocation);
+            return this.Ok(locationCache);
         }
     }
 }
